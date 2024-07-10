@@ -20,13 +20,13 @@ function App() {
         inputRef.current[index].innerText='O'
         setSymbol(0)
       }
-      checkWinner(index)
+      checkWinner(index)  
     }
-      
+    
   }
   const reset=()=>{
     const classList=containerRef.current.className
-    containerRef.current.classList.add('animate__bounceOut');
+    containerRef.current.className+=('animate__bounceOut');
     containerRef.current.addEventListener('animationend', () => {
       containerRef.current.className=classList
       });
@@ -71,8 +71,8 @@ function App() {
         <h1 className="text-3xl font-bold mb-3 text-center">
             X O
         </h1>
-        <h3 className="text-1xl font-bold mb-3 text-center">
-            X will start first.
+        <h3 className="text-1xl font-bold mb-3 text-center animate__animated" >
+            Player {symbol?'2':'1'} turn
         </h3>
             <div className="grid grid-cols-3 gap-1  ">
             <div className=" bg-gray-200 h-28 w-28  text-4xl flex justify-around items-center " onClick={()=>{handleClick(0)}} ref={(el)=>{inputRef.current[0]=el}} ></div>
