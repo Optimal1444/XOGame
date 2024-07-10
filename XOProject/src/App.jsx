@@ -9,6 +9,7 @@ function App() {
   const [winner,setWinner]=useState(0)
   const inputRef=useRef([])
   const winnerRef=useRef()
+  const containerRef=useRef()
   const handleClick=(index)=>{
     if(!winner&&!inputRef.current[index].innerText){
       if(!symbol){
@@ -24,13 +25,18 @@ function App() {
       
   }
   const reset=()=>{
+    const classList=containerRef.current.className
+    containerRef.current.classList.add('animate__bounceOut');
+    containerRef.current.addEventListener('animationend', () => {
+      containerRef.current.className=classList
+      });
     for(let i=0;i<9;i++){
       inputRef.current[i].innerText=''
       inputRef.current[i].className='bg-gray-200 h-28 w-28  text-4xl flex justify-around items-center'
   }
     setSymbol(0)
     setWinner(0)
-    winnerRef.current.className="hidden"
+    
 
   }
   const checkWinner=(index)=>{
@@ -48,11 +54,11 @@ function App() {
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (inputRef.current[a].innerText==letter && inputRef.current[b].innerText==letter && inputRef.current[c].innerText==letter) {
-        inputRef.current[a].className=inputRef.current[a].className+' text-green-600 animate__animated animate__flash'
-        inputRef.current[b].className=inputRef.current[a].className+' text-green-600 animate__animated animate__flash'
-        inputRef.current[c].className=inputRef.current[a].className+' text-green-600 animate__animated animate__flash'
+        inputRef.current[a].className+=' text-green-600 animate__animated animate__flash'
+        inputRef.current[b].className+=' text-green-600 animate__animated animate__flash'
+        inputRef.current[c].className+=' text-green-600 animate__animated animate__flash'
         setWinner(1)
-        winnerRef.current.className="inline-flex items-center rounded-md bg-green-50 px-4 py-3 text-4xl font-medium text-green-700 ring-1 ring-inset ring-green-600/20 mt-8 "
+        
 
       }
     }
@@ -61,7 +67,7 @@ function App() {
   
   return (
     <>
-      <div className="bg-white p-8 rounded-lg shadow-md max-w-md border m-4 flex flex-col justify-center items-center mx-auto my-10 ">
+      <div ref={containerRef}  className="bg-white p-8 rounded-lg shadow-md max-w-md border m-4 flex flex-col justify-center items-center mx-auto my-10 animate__animated  ">
         <h1 className="text-3xl font-bold mb-3 text-center">
             X O
         </h1>
@@ -90,8 +96,9 @@ function App() {
                 Restart
             </button>
         </div>
-        <span ref={winnerRef} className="hidden" >Winner</span>
-
+        {winner==1 &&
+        <span ref={winnerRef} className="inline-flex items-center rounded-md bg-green-50 px-4 py-3 text-4xl font-medium text-green-700 ring-1 ring-inset ring-green-600/20 mt-8 " >Winner</span>
+        }
         </div>
         
     </>
