@@ -28,7 +28,7 @@ function App() {
   }
     setSymbol(0)
     setWinner(0)
-    winnerRef.current.className="inline-flex items-center rounded-md bg-green-50 px-4 py-3 text-4xl font-medium text-green-700 ring-1 ring-inset ring-green-600/20 mt-8 hidden"
+    winnerRef.current.className="hidden"
 
   }
   const checkWinner=(index)=>{
@@ -88,7 +88,7 @@ function App() {
                 Restart
             </button>
         </div>
-        <span ref={winnerRef} className="inline-flex items-center rounded-md bg-green-50 px-4 py-3 text-4xl font-medium text-green-700 ring-1 ring-inset ring-green-600/20 mt-8 hidden" >Winner</span>
+        <span ref={winnerRef} className="hidden" >Winner</span>
 
         </div>
         
