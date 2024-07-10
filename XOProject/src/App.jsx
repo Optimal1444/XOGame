@@ -2,6 +2,8 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import './output.css'
+import 'animate.css';
+
 function App() {
   const [symbol,setSymbol]=useState(0)
   const [winner,setWinner]=useState(0)
@@ -46,9 +48,9 @@ function App() {
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (inputRef.current[a].innerText==letter && inputRef.current[b].innerText==letter && inputRef.current[c].innerText==letter) {
-        inputRef.current[a].className=inputRef.current[a].className+' text-green-600'
-        inputRef.current[b].className=inputRef.current[a].className+' text-green-600'
-        inputRef.current[c].className=inputRef.current[a].className+' text-green-600'
+        inputRef.current[a].className=inputRef.current[a].className+' text-green-600 animate__animated animate__flash'
+        inputRef.current[b].className=inputRef.current[a].className+' text-green-600 animate__animated animate__flash'
+        inputRef.current[c].className=inputRef.current[a].className+' text-green-600 animate__animated animate__flash'
         setWinner(1)
         winnerRef.current.className="inline-flex items-center rounded-md bg-green-50 px-4 py-3 text-4xl font-medium text-green-700 ring-1 ring-inset ring-green-600/20 mt-8 "
 
@@ -59,7 +61,7 @@ function App() {
   
   return (
     <>
-      <div className="bg-white p-8 rounded-lg shadow-md max-w-md border m-4 flex flex-col justify-center items-center mx-auto my-10">
+      <div className="bg-white p-8 rounded-lg shadow-md max-w-md border m-4 flex flex-col justify-center items-center mx-auto my-10 ">
         <h1 className="text-3xl font-bold mb-3 text-center">
             X O
         </h1>
